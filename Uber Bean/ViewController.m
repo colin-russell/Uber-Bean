@@ -34,6 +34,7 @@
     self.mapView.showsUserLocation = YES;
     self.mapView.showsPointsOfInterest = YES;
     self.mapView.mapType = MKMapTypeStandard;
+    
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -58,24 +59,9 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status
     CLLocation *loc = locations[0];
     [self.mapView
      setRegion:MKCoordinateRegionMake(loc.coordinate,
-                                      MKCoordinateSpanMake(0.2, 0.2))
+                                      MKCoordinateSpanMake(0.01, 0.01))
      animated:YES];
+    
 }
-
-//- (void)setupMapView {
-//    //self.mapView = [[MKMapView alloc] initWithFrame:self.view.frame];
-//    self.mapView = [MKMapView new];
-//    self.mapView.translatesAutoresizingMaskIntoConstraints = NO;
-//    //self.mapView.clipsToBounds = YES;
-//    [NSLayoutConstraint activateConstraints:
-//     @[
-//       [self.mapView.heightAnchor constraintEqualToAnchor:self.view.heightAnchor],
-//       [self.mapView.widthAnchor constraintEqualToAnchor:self.view.widthAnchor],
-//       [self.mapView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
-//       [self.mapView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor]
-//       ]
-//     ];
-//    [self.view addSubview:self.mapView];
-//}
 
 @end
