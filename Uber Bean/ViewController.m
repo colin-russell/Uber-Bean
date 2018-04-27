@@ -7,23 +7,75 @@
 //
 
 #import "ViewController.h"
+@import MapKit;
+@import CoreLocation;
 
-@interface ViewController ()
+@interface ViewController () <CLLocationManagerDelegate, MKMapViewDelegate>
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
+@property (nonatomic, strong) CLLocationManager *locationManager;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    
+    self.locationManager = [CLLocationManager new];
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+    self.locationManager.distanceFilter = 20;
+    self.locationManager.delegate = self;
+    [self.locationManager requestWhenInUseAuthorization];
+    [self.locationManager requestLocation];
+    
+    
+    self.mapView.delegate = self;
+    self.mapView.showsUserLocation = YES;
+    self.mapView.showsPointsOfInterest = YES;
+    self.mapView.mapType = MKMapTypeStandard;
 }
 
+#pragma mark - CLLocationManagerDelegate
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)locationManager:(CLLocationManager *)manager
+didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+{
+    NSLog(@"Authorization status: %d", status);
+    if (status == kCLAuthorizationStatusAuthorizedWhenInUse) {
+        [manager startUpdatingLocation];
+    }
 }
 
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    NSLog(@"Manager failed: %@", error.localizedDescription);
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
+{
+    NSLog(@"Updated locations %@", locations);
+    CLLocation *loc = locations[0];
+    [self.mapView
+     setRegion:MKCoordinateRegionMake(loc.coordinate,
+                                      MKCoordinateSpanMake(0.2, 0.2))
+     animated:YES];
+}
+
+//- (void)setupMapView {
+//    //self.mapView = [[MKMapView alloc] initWithFrame:self.view.frame];
+//    self.mapView = [MKMapView new];
+//    self.mapView.translatesAutoresizingMaskIntoConstraints = NO;
+//    //self.mapView.clipsToBounds = YES;
+//    [NSLayoutConstraint activateConstraints:
+//     @[
+//       [self.mapView.heightAnchor constraintEqualToAnchor:self.view.heightAnchor],
+//       [self.mapView.widthAnchor constraintEqualToAnchor:self.view.widthAnchor],
+//       [self.mapView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
+//       [self.mapView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor]
+//       ]
+//     ];
+//    [self.view addSubview:self.mapView];
+//}
 
 @end
