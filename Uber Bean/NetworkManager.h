@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface NetworkManager : NSObject
-@property (nonatomic, strong) NSMutableDictionary *businesses;
+@property (nonatomic, strong) NSMutableArray *cafes;
 @end

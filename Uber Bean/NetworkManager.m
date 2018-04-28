@@ -7,6 +7,7 @@
 //
 
 #import "NetworkManager.h"
+#import "Cafe.h"
 
 @implementation NetworkManager
 
@@ -14,7 +15,7 @@
 {
     self = [super init];
     if (self) {
-        _businesses = [NSMutableDictionary new];
+        //_businesses = [NSMutableDictionary new];
         [self yelpNSURLsetup];
     }
     return self;
@@ -36,28 +37,19 @@
         }
         
         NSError *jsonError = nil;
-        NSDictionary *root = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError]; // need to parse through as an array of dictionaries, not a dictionary
+        NSDictionary *root = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
         if (jsonError) {
             NSLog(@"jsonError: %@", jsonError.localizedDescription);
             return;
         }
         
-        NSArray *bussinessArray = root[@"businesses"];
-        for (int i = 0; i < bussinessArray.count; i++) {
-            NSDictionary *business = bussinessArray[i];
-            NSLog(@"business name: %@", business[@"name"]);
+        NSArray *cafeArray = root[@"businesses"];
+        for (int i = 0; i < cafeArray.count; i++) {
+            Cafe *cafe = [[Cafe alloc] initWithDictionary:cafeArray[i]];
+            [self.cafes addObject:cafe];
         }
-        //self.businesses = mainDict[@"businesses"][@"name"];
-        
-        
-//        for (NSDictionary *business in self.businesses) {
-//
-//            NSLog(@"name: %@", business[@"name"]);
-//            [self.photoObjects addObject:photo];
-//            NSLog(@"count: %lu", self.photoObjects.count);
-//        }
+
         [NSOperationQueue.mainQueue addOperationWithBlock:^{
-            //[self.catCollectionView reloadData];
         }];
     }];
     
