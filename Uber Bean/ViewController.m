@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "NetworkManager.h"
 @import MapKit;
 @import CoreLocation;
 
@@ -20,7 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    NetworkManager *networkManager = [NetworkManager new];
     
     self.locationManager = [CLLocationManager new];
     self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;

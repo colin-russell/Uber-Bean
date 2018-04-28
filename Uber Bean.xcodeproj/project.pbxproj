@@ -15,7 +15,7 @@
 		3B7F14F02093A2D900DD0553 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7F14EF2093A2D900DD0553 /* main.m */; };
 		3B7F14F82093A61C00DD0553 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7F14F72093A61B00DD0553 /* MapKit.framework */; };
 		3B7F14FB2093B8B400DD0553 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7F14FA2093B8B400DD0553 /* NetworkManager.m */; };
-		3B7F14FE2093CDD100DD0553 /* Business.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7F14FD2093CDD100DD0553 /* Business.m */; };
+		3B7F15012093D16E00DD0553 /* Cafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7F15002093D16E00DD0553 /* Cafe.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,8 +32,8 @@
 		3B7F14F72093A61B00DD0553 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		3B7F14F92093B8B400DD0553 /* NetworkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
 		3B7F14FA2093B8B400DD0553 /* NetworkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
-		3B7F14FC2093CDD100DD0553 /* Business.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Business.h; sourceTree = "<group>"; };
-		3B7F14FD2093CDD100DD0553 /* Business.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Business.m; sourceTree = "<group>"; };
+		3B7F14FF2093D16E00DD0553 /* Cafe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cafe.h; sourceTree = "<group>"; };
+		3B7F15002093D16E00DD0553 /* Cafe.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Cafe.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,8 +79,8 @@
 				3B7F14EF2093A2D900DD0553 /* main.m */,
 				3B7F14F92093B8B400DD0553 /* NetworkManager.h */,
 				3B7F14FA2093B8B400DD0553 /* NetworkManager.m */,
-				3B7F14FC2093CDD100DD0553 /* Business.h */,
-				3B7F14FD2093CDD100DD0553 /* Business.m */,
+				3B7F14FF2093D16E00DD0553 /* Cafe.h */,
+				3B7F15002093D16E00DD0553 /* Cafe.m */,
 			);
 			path = "Uber Bean";
 			sourceTree = "<group>";
@@ -163,7 +163,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B7F14FE2093CDD100DD0553 /* Business.m in Sources */,
+				3B7F15012093D16E00DD0553 /* Cafe.m in Sources */,
 				3B7F14FB2093B8B400DD0553 /* NetworkManager.m in Sources */,
 				3B7F14E52093A2D700DD0553 /* ViewController.m in Sources */,
 				3B7F14F02093A2D900DD0553 /* main.m in Sources */,

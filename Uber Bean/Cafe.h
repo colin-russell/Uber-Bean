@@ -1,5 +1,5 @@
 //
-//  Business.h
+//  Cafe.h
 //  Uber Bean
 //
 //  Created by Colin on 2018-04-27.
@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Business : NSObject
-
+@interface Cafe : NSObject
+@property (nonatomic, strong) NSString *name;
 @end
