@@ -15,7 +15,6 @@
     self = [super init];
     if (self) {
         _name = dictionary[@"name"];
-        NSLog(@"name: %@", self.name);
     }
     return self;
 }

@@ -7,7 +7,6 @@
 //
 
 #import "NetworkManager.h"
-#import "Cafe.h"
 
 @implementation NetworkManager
 
@@ -15,7 +14,7 @@
 {
     self = [super init];
     if (self) {
-        //_businesses = [NSMutableDictionary new];
+        //self.isFinishedAddingCafes = NO;
         [self yelpNSURLsetup];
     }
     return self;
@@ -44,15 +43,27 @@
         }
         
         NSArray *cafeArray = root[@"businesses"];
+        NSMutableArray *cafes = [NSMutableArray new];
         for (int i = 0; i < cafeArray.count; i++) {
             Cafe *cafe = [[Cafe alloc] initWithDictionary:cafeArray[i]];
-            [self.cafes addObject:cafe];
+            
+            [NSOperationQueue.mainQueue addOperationWithBlock:^{
+                [cafes addObject:cafe];
+                //NSLog(@"count: %lu", self.cafes.count);
+            }];
+            
         }
-
+        
         [NSOperationQueue.mainQueue addOperationWithBlock:^{
+            
+            [self.delegate setCafes:cafes];
         }];
+
+        
     }];
     
     [dataTask resume];
 }
+
+
 @end

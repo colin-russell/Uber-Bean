@@ -7,7 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Cafe.h"
+
+@protocol NetworkManagerDelegate <NSObject>
+- (void) setCafes:(NSMutableArray *)cafes;
+@end
 
 @interface NetworkManager : NSObject
-@property (nonatomic, strong) NSMutableArray *cafes;
+@property (nonatomic, weak) id<NetworkManagerDelegate> delegate;
+//@property (nonatomic, strong) NSMutableArray *cafes;
+@property BOOL isFinishedAddingCafes;
 @end
