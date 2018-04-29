@@ -52,6 +52,7 @@
     for (Cafe *cafe in self.listOfCafes) {
         [self.mapView addAnnotation:cafe];
     }
+    [self.mapView showAnnotations:self.listOfCafes animated:YES];
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -92,6 +93,7 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status
         mark.titleVisibility = MKFeatureVisibilityVisible;
         mark.animatesWhenAdded = YES;
         
+    
         return mark;
     }
     
