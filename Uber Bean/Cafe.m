@@ -14,7 +14,10 @@
 {
     self = [super init];
     if (self) {
-        _name = dictionary[@"name"];
+        _title = dictionary[@"name"];
+        double latitude = [dictionary[@"coordinates"][@"latitude"] doubleValue];
+        double longitude =  [dictionary[@"coordinates"][@"longitude"] doubleValue];
+        _coordinate = CLLocationCoordinate2DMake(latitude, longitude);
     }
     return self;
 }

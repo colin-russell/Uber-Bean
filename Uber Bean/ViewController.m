@@ -15,7 +15,7 @@
 
 @interface ViewController () <CLLocationManagerDelegate, MKMapViewDelegate, NetworkManagerDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property (strong, nonatomic) NSMutableArray *cafes2;
+@property (strong, nonatomic) NSMutableArray *listOfCafes;
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) NetworkManager *networkManager;
 @end
@@ -71,10 +71,10 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status
 }
 
 - (void)setCafes:(NSMutableArray *)cafes {
-    self.cafes2 = [NSMutableArray new];
-    self.cafes2 = cafes;
+    self.listOfCafes = [NSMutableArray new];
+    self.listOfCafes = cafes;
     Cafe *cafe = cafes[0];
-    NSLog(@"cafe name: %@", cafe.name);
+    NSLog(@"cafe name: %@", cafe.title);
     NSLog(@"count vc: %lu", cafes.count);
 }
 

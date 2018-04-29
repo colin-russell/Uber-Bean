@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+@import MapKit;
 
-@interface Cafe : NSObject
-@property (nonatomic, strong) NSString *name;
+@interface Cafe : NSObject <MKAnnotation>
+@property (nonatomic, copy, nullable) NSString *title;
+@property (nonatomic, assign) CLLocationCoordinate2D coordinate;
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 @end
