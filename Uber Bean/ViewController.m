@@ -34,14 +34,24 @@
     [self.locationManager requestWhenInUseAuthorization];
     [self.locationManager requestLocation];
     
-    
     self.mapView.delegate = self;
     self.mapView.showsUserLocation = YES;
     self.mapView.showsPointsOfInterest = YES;
     self.mapView.mapType = MKMapTypeStandard;
-    
-   
-    
+    [self.mapView registerClass:[MKMarkerAnnotationView class] forAnnotationViewWithReuseIdentifier:@"cafeAnn"];
+}
+
+
+- (void)setCafes:(NSMutableArray *)cafes {
+    self.listOfCafes = [NSMutableArray new];
+    self.listOfCafes = cafes;
+    [self addMapAnnotations];
+}
+
+- (void)addMapAnnotations {
+    for (Cafe *cafe in self.listOfCafes) {
+        [self.mapView addAnnotation:cafe];
+    }
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -70,12 +80,22 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status
      animated:YES];
 }
 
-- (void)setCafes:(NSMutableArray *)cafes {
-    self.listOfCafes = [NSMutableArray new];
-    self.listOfCafes = cafes;
-    Cafe *cafe = cafes[0];
-    NSLog(@"cafe name: %@", cafe.title);
-    NSLog(@"count vc: %lu", cafes.count);
+#pragma mark - MKMapViewDelegate
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+{
+    if ([annotation isKindOfClass:[Cafe class]]) {
+        MKMarkerAnnotationView *mark = (MKMarkerAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:@"cafeAnn"                                                                              forAnnotation:annotation];
+        
+        mark.markerTintColor = [UIColor brownColor];
+        mark.glyphText = annotation.title;
+        mark.titleVisibility = MKFeatureVisibilityVisible;
+        mark.animatesWhenAdded = YES;
+        
+        return mark;
+    }
+    
+    return nil;
 }
 
 @end
